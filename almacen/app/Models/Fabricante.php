@@ -2,14 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Fabricante extends Model
 {
-    protected $table = 'fabricante';
+    protected $table = 'fabricantes';
     protected $primaryKey = 'codigo';
-    public $timestamps = false; 
-    protected $fillable = ['nombre'];
-    use HasFactory;
+    public $incrementing = true;
+    public $timestamps = true;
+    protected $keyType = 'int';
+    protected $fillable = [
+        'nombre',
+
+    ];
+
+    public function productos()
+    {
+        return $this->hasMany(Producto::class);
+    }
 }

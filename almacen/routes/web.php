@@ -3,11 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FabricanteController;
 use App\Http\Controllers\ProductoController;
-use App\Http\Controllers\SqlController;
-
+use App\Http\Controllers\UsuarioController;
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
 Route::resource('fabricantes', FabricanteController::class);
 Route::resource('productos', ProductoController::class);
-Route::get('sql', [SqlController::class, 'index'])->name('sql.index');
+Route::resource('usuarios', UsuarioController::class);

@@ -1,7 +1,16 @@
 @extends('layouts.app') 
 @section('content') 
-@section('title', 'Editar Fabricante')
 <h2>Editar Fabricante</h2> 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>¡Ups! Algo salió mal:</strong>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <form method="POST" action="{{ route('fabricantes.update', $fabricante) }}"> 
 @csrf 
 @method('PUT') 
@@ -14,4 +23,4 @@ $fabricante->nombre }}" required>
 <a href="{{ route('fabricantes.index') }}" class="btn btn
 secondary">Cancelar</a> 
 </form> 
-@endsection
+@endsection 

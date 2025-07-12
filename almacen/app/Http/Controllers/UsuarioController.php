@@ -27,7 +27,7 @@ class UsuarioController extends Controller
     $request->validate([
         'usuario' => 'required|string|max:255|unique:usuarios,usuario',
         'nombre' => 'required|string|max:255',
-        'password' => 'required|confirmed|min:6',
+        'password' => 'required|confirmed|min:5',
     ]);
 
     Usuario::create([

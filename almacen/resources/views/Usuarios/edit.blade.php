@@ -19,7 +19,7 @@
     
         <div class="mb-3">
             <label for="name" class="form-label">Nombre</label>
-            <input type="text" name="name" id="name" class="form-control" required value="{{ old('name', $usuario->name) }}">
+            <input type="text" name="name" id="name" class="form-control" required value="{{ $usuario->nombre }}">
         </div>
 
         <div class="mb-3">

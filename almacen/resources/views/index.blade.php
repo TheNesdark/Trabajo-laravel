@@ -42,6 +42,17 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Clientes</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Gestiona los clientes de tu empresa.</p>
+                        <a href="{{ route('clientes.index') }}" class="btn btn-primary">Ver Clientes</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

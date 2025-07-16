@@ -35,6 +35,7 @@ class FabricanteResource extends Resource
                 Tables\Columns\TextColumn::make('codigo')
                     ->sortable()
                     ->searchable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('nombre')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')

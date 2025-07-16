@@ -11,7 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+
 
 class FabricanteResource extends Resource
 {
@@ -32,14 +32,19 @@ class FabricanteResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('codigo')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('nombre')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
+                    ->label('Fecha de creación')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
+                    ->label('Fecha de actualización')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
@@ -47,7 +52,7 @@ class FabricanteResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -55,7 +60,6 @@ class FabricanteResource extends Resource
                 ]),
             ]);
     }
-
     public static function getRelations(): array
     {
         return [

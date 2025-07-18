@@ -2,20 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\FabricanteResource\Pages;
-use App\Filament\Resources\FabricanteResource\RelationManagers;
-use App\Models\Fabricante;
+use App\Filament\Resources\ClientesResource\Pages;
+use App\Filament\Resources\ClientesResource\RelationManagers;
+use App\Models\Clientes;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-
-class FabricanteResource extends Resource
+class ClientesResource extends Resource
 {
-    protected static ?string $model = Fabricante::class;
+    protected static ?string $model = Clientes::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -32,19 +32,18 @@ class FabricanteResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('codigo')
+                Tables\Columns\TextColumn::make('id')
                     ->sortable()
-                    ->searchable(),
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('nombre')
                     ->searchable(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
-                    ->label('Fecha de creación')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
-                    ->label('Fecha de actualización')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
@@ -52,7 +51,7 @@ class FabricanteResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -60,6 +59,7 @@ class FabricanteResource extends Resource
                 ]),
             ]);
     }
+
     public static function getRelations(): array
     {
         return [
@@ -70,9 +70,9 @@ class FabricanteResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListFabricantes::route('/'),
-            'create' => Pages\CreateFabricante::route('/create'),
-            'edit' => Pages\EditFabricante::route('/{record}/edit'),
+            'index' => Pages\ListClientes::route('/'),
+            'create' => Pages\CreateClientes::route('/create'),
+            'edit' => Pages\EditClientes::route('/{record}/edit'),
         ];
     }
 }
